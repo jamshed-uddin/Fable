@@ -8,3 +8,16 @@ body {
   width: 80%;
   margin: 0 auto;
 }
+
+button {
+  border: 1px solid black;
+  margin-top: 0.25rem;
+  border-radius: 0.25rem;
+  padding: 0.125rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+button:active {
+  scale: 95%;
+}

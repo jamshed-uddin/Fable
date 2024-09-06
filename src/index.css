@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: whitesmoke;
+  max-width: 1300px;
+  width: 80%;
+  margin: 0 auto;
+}

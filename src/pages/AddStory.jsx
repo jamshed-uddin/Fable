@@ -40,11 +40,13 @@ const AddStory = () => {
     paths: [
       {
         id: 1,
+        sectionId: 1,
         title: "path 1",
         leadsTo: 9,
       },
       {
         id: 2,
+        sectionId: 1,
         title: "path 2",
         leadsTo: 7,
       },
@@ -54,6 +56,7 @@ const AddStory = () => {
   });
 
   console.log(story);
+
   return (
     <div>
       <Outlet context={[story, setStory]} />

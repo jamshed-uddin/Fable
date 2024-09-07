@@ -1,19 +1,43 @@
 import React from "react";
 
-const useMutateStory = (story) => {
-  console.log(story);
-
-  const getPaths = (sectionPaths) => {
-    return story?.paths.filter((path) => sectionPaths.includes(path.id));
+const useMutateStory = (story, setStory) => {
+  console.log(setStory);
+  const getPaths = (sectionId) => {
+    return story?.paths.filter((path) => path.sectionId === sectionId);
   };
 
-  const addPath = (sectionId, text) => {
+  const addPath = (sectionId, title) => {
+    const newPathId = "path" + Math.floor(Math.random() * 10000);
     const newPath = {
-      id: "path" + Math.floor(Math.random() * 10000),
-      text,
+      id: newPathId,
+      title,
       sectionId,
-      leadsToSection: null,
+      leadsTo: null,
     };
+    setStory((prev) => ({
+      ...prev,
+      paths: [...prev.paths, newPath],
+      sections: prev.sections.map((section) =>
+        section.id === sectionId
+          ? { ...section, paths: [...section.paths, newPathId] }
+          : section
+      ),
+    }));
+  };
+
+  const deletePath = (sectionId, pathId) => {
+    setStory((prev) => ({
+      ...prev,
+      paths: prev.paths.filter((path) => path.id !== pathId),
+      sections: prev.sections.map((section) =>
+        section.id === sectionId
+          ? {
+              ...section,
+              paths: section.paths.filter((path) => path !== pathId),
+            }
+          : section
+      ),
+    }));
   };
 
   const connectSection = (pathId, leadsToSectionId) => {};
@@ -29,6 +53,7 @@ const useMutateStory = (story) => {
   return {
     addPath,
     getPaths,
+    deletePath,
     connectSection,
     addSection,
     getSection,

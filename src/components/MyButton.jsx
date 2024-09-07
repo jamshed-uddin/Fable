@@ -1,7 +1,7 @@
 import React from "react";
 import { Tooltip } from "react-tooltip";
 
-const MyButton = ({ children, tooltipText, tooltipId, onClick }) => {
+const MyButton = ({ children, tooltipText, tooltipId, onClick, type }) => {
   return (
     <>
       <button
@@ -9,6 +9,7 @@ const MyButton = ({ children, tooltipText, tooltipId, onClick }) => {
         data-tooltip-content={tooltipText}
         data-tooltip-delay-hide={300}
         onClick={onClick}
+        type={type}
       >
         {children}
       </button>
